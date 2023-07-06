@@ -1,0 +1,9 @@
+name: 'Rate Limit Information'
+description: 'Display detailed rate limit info'
+inputs:
+  token:
+    description: 'GitHub token'
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
