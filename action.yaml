@@ -25,6 +25,5 @@ runs:
       run: |
         chmod +x ratelimit.sh
         ./ratelimit.sh "${{ inputs.token }}"
-        echo "$(cat $GITHUB_OUTPUT)"
-        echo "$(cat $GITHUB_OUTPUT)" >> $GITHUB_OUTPUT
+        echo "output check in action.yaml: $(cat $GITHUB_OUTPUT)"
       shell: bash
