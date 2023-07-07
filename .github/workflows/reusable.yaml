@@ -4,7 +4,7 @@ on:
     inputs:
       token:
         description: 'GitHub token'
-        required: true
+        required: false
         type: string
 jobs:
   check_rate_limit:
