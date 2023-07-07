@@ -31,9 +31,14 @@ jobs:
       - name: Calculate difference
         id: difference
         run: |
-          echo "Remaining rate limit at start: ${{ env.start_remaining }}"
-          echo "Remaining rate limit at end: ${{ env.end_remaining }}"
-          DIFFERENCE=$((${{ env.end_remaining }} - ${{ env.start_remaining }}))
+          START_REMAINING=${{ env.start_remaining }}
+          END_REMAINING=${{ env.end_remaining }}
+
+          echo "Remaining rate limit at start: $START_REMAINING"
+          echo "Remaining rate limit at end: $END_REMAINING"
+
+          DIFFERENCE=$(( START_REMAINING - END_REMAINING ))
+
           echo "Difference: $DIFFERENCE"
           echo "difference=$DIFFERENCE" >> $GITHUB_ENV
         shell: bash
@@ -50,4 +55,3 @@ jobs:
       - name: Print difference
         run: |
           echo "Difference in remaining calls: ${{ env.difference }}"
-  
