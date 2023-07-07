@@ -1,11 +1,26 @@
 name: Call reusable workflow
 
+# on:
+#   workflow_dispatch:
+#   push:
+
+# jobs:
+#   call_reusable_workflow:
+#     uses: wakamex/rate-limit-action/.github/workflows/reusable.yaml@master
+#     secrets:
+#       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+
 on:
   workflow_dispatch:
   push:
 
 jobs:
-  call_reusable_workflow:
+  call_check_rate_limit:
     uses: wakamex/rate-limit-action/.github/workflows/reusable.yaml@master
     secrets:
       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+  call_show_rate_limit:
+    needs: call_check_rate_limit
+    uses: wakamex/rate-limit-action/.github/workflows/show-rate-limit.yaml@master
+    with:
+      remaining: ${{ needs.call_check_rate_limit.outputs.remaining }}
