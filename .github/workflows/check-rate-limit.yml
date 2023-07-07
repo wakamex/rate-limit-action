@@ -15,5 +15,6 @@ jobs:
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
           sha: ${{ github.event.workflow_run.head_sha }}
+          post_comment: true
     outputs:
       remaining: ${{ steps.calc.outputs.remaining }}
