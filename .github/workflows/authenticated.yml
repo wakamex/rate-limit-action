@@ -14,11 +14,7 @@ jobs:
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
 
-      - name: Print remaining rate limit at start
-        run: |
-          echo "Remaining rate limit at start: ${{ steps.start.outputs.remaining }}"
-
-      - name: Use GitHub thenticated API
+      - name: Use GitHub authenticated API
         run: |
           for i in {1..10}
           do

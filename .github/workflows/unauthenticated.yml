@@ -12,13 +12,13 @@ jobs:
         id: start
         uses: wakamex/rate-limit-action@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
 
-      - name: Use GitHub unauthenticated API
+      - name: Use GitHub unathenticated API
         run: |
           for i in {1..10}
           do
-            curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/users/octocat/repos > /dev/null
+            curl -s -H "Authorization: token ${{ secrets.GH_GITHUB_COM_TOKEN }}" https://api.github.com/users/octocat/repos > /dev/null
           done
         shell: bash
 
@@ -26,7 +26,7 @@ jobs:
         uses: wakamex/rate-limit-action@master
         id: end
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
 
       - name: Calculate difference
         id: difference
@@ -45,7 +45,7 @@ jobs:
 
       - name: Verify difference
         run: |
-          if [ ${{ env.difference }} -le 0 ]; then
+          if [ ${{ env.DIFFERENCE }} -le 0 ]; then
             echo "Difference is not greater than 0, failing workflow."
             exit 1
           else
