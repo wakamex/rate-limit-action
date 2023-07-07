@@ -10,6 +10,6 @@ jobs:
         uses: wakamex/rate-limit-action/calc@master
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
-      - uses: wakamex/rate-limit-action/show@master
+      - uses: wakamex/rate-limit-action/.github/workflows/show-rate-limit.yml@master
         with:
           remaining: ${{ steps.calc.outputs.remaining }}
