@@ -16,7 +16,10 @@ jobs:
 
       - name: Print remaining rate limit at start
         run: |
+          echo "steps:"
           echo "${{ steps }}"
+          echo "steps.start:"
+          echo "${{ steps.start }}"
           echo "Remaining rate limit at start: ${{ steps.start.outputs.remaining }}"
 
       - name: Use GitHub thenticated API
