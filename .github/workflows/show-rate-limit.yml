@@ -1,0 +1,16 @@
+name: 'Show Rate Limit'
+on:
+  workflow_call:
+    inputs:
+      remaining:
+        description: 'The remaining rate limit'
+        required: true
+        type: string
+run-name: "Rate Limit: ${{ inputs.remaining }}"
+jobs:
+  use_input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print remaining rate limit
+        run: |
+          echo "Remaining rate limit: ${{ inputs.remaining }}"
