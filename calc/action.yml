@@ -56,9 +56,9 @@ runs:
           const prNumber = ${{ steps.get-pr.outputs.result }}
           if (prNumber) {
             await github.rest.issues.createComment({
-              owner: context.repo.owner
+              owner: context.repo.owner,
               repo: context.repo.repo,
-                issue_number: prNumber,
-                body: 'Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }} :rocket:'
-              })
-            }
+              issue_number: prNumber,
+              body: 'Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }} :rocket:'
+            })
+          }
