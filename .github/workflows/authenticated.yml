@@ -31,9 +31,9 @@ jobs:
       - name: Calculate difference
         id: difference
         run: |
-          echo "Remaining rate limit at start: ${{ steps.start.outputs.remaining }}"
-          echo "Remaining rate limit at end: ${{ steps.end.outputs.remaining }}"
-          DIFFERENCE=$((${{ steps.start.outputs.remaining }} - ${{ steps.end.outputs.remaining }}))
+          echo "Remaining rate limit at start: ${{ env.start_remaining }}"
+          echo "Remaining rate limit at end: ${{ env.end_remaining }}"
+          DIFFERENCE=$((${{ env.end_remaining }} - ${{ env.start_remaining }}))
           echo "Difference: $DIFFERENCE"
           echo "difference=$DIFFERENCE" >> $GITHUB_ENV
         shell: bash
