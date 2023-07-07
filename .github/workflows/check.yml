@@ -6,9 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Rate
+        id: calc
         uses: wakamex/rate-limit-action/calc@master
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
       - uses: wakamex/rate-limit-action/show@master
         with:
-          remaining: ${{ steps.Rate.outputs.remaining }}
+          remaining: ${{ steps.calc.outputs.remaining }}
