@@ -10,10 +10,10 @@ runs:
   using: 'composite'
   steps:
   - name: Rate
-    uses: wakamex/rate-limit-action/.github/workflows/calc.yml@master
+    uses: wakamex/rate-limit-action/calc@master
     with:
       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
-  - uses: wakamex/rate-limit-action/.github/workflows/show.yml@master
+  - uses: wakamex/rate-limit-action/show@master
     needs: Rate
     with:
       remaining: ${{ needs.Rate.outputs.remaining }}
