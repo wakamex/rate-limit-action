@@ -1,0 +1,53 @@
+name: test authenticated rate limit
+
+on:
+    workflow_dispatch:
+    push:
+
+jobs:
+  check-rate-limit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check authenticated GitHub rate limit at start with custom token
+        id: start
+        uses: wakamex/rate-limit-action@master
+        with:
+          token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+
+      - name: Use GitHub thenticated API
+        run: |
+          for i in {1..10}
+          do
+            curl -s -H "Authorization: token ${{ secrets.GH_GITHUB_COM_TOKEN }}" https://api.github.com/users/octocat/repos
+          done
+        shell: bash
+
+      - name: Check authenticated GitHub rate limit at end with custom token
+        uses: wakamex/rate-limit-action@master
+        id: end
+        with:
+          token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+
+      - name: Calculate difference
+        id: difference
+        run: |
+          echo "Remaining rate limit at start: ${{ steps.start.outputs.remaining }}"
+          echo "Remaining rate limit at end: ${{ steps.end.outputs.remaining }}"
+          DIFFERENCE=$((${{ steps.start.outputs.remaining }} - ${{ steps.end.outputs.remaining }}))
+          echo "Difference: $DIFFERENCE"
+          echo "difference=$DIFFERENCE" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Verify difference
+        run: |
+          if [ ${{ env.DIFFERENCE }} -le 0 ]; then
+            echo "Difference is not greater than 0, failing workflow."
+            exit 1
+          else
+            echo "Difference is greater than 0, workflow passed."
+          fi
+  
+      - name: Print difference
+        run: |
+          echo "Difference in remaining calls: ${{ env.difference }}"
+  
