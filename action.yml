@@ -1,0 +1,19 @@
+secrets:
+  token:
+    description: 'GitHub token'
+    required: false
+outputs:
+  remaining:
+    description: 'The remaining rate limit after running the action'
+    value: ${{ jobs.Rate.outputs.remaining }}
+runs:
+  using: 'composite'
+  steps:
+  - name: Rate
+    uses: wakamex/rate-limit-action/.github/workflows/calc.yml@master
+    with:
+      token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+  - uses: wakamex/rate-limit-action/.github/workflows/show.yml@master
+    needs: Rate
+    with:
+      remaining: ${{ needs.Rate.outputs.remaining }}

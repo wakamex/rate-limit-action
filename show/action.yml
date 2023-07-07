@@ -1,0 +1,8 @@
+inputs:
+  remaining:
+    description: 'The remaining rate limit'
+    required: true
+    type: string
+runs:
+  steps:
+  - name: Limit: ${{ inputs.remaining }}

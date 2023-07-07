@@ -7,5 +7,4 @@ jobs:
     steps:
       - uses: wakamex/rate-limit-action@master
         with:
-          action: wrapper
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
