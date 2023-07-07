@@ -10,14 +10,18 @@ on:
         value: ${{ jobs.calc.outputs.remaining }}
 jobs:
   calc:
-    uses: wakamex/rate-limit-action@main
-    with:
-      action: calc
+    runs-on: ubuntu-latest
+    steps:
+      uses: wakamex/rate-limit-action@main
+      with:
+        action: calc
     secrets:
       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
   show:
+    runs-on: ubuntu-latest
     needs: calc
-    uses: wakamex/rate-limit-action@main
-    with:
-      action: show
-      remaining: ${{ needs.calc.outputs.remaining }}
+    steps:
+      uses: wakamex/rate-limit-action@main
+      with:
+        action: show
+        remaining: ${{ needs.calc.outputs.remaining }}
