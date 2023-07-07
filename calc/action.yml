@@ -30,3 +30,5 @@ runs:
       run: |
         echo "Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }}"
       shell: bash
+    outputs:
+      remaining: ${{ steps.calc_rate_limit.outputs.remaining }}
