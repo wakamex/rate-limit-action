@@ -25,5 +25,5 @@ runs:
       run: |
         chmod +x ratelimit.sh
         ./ratelimit.sh "${{ inputs.token }}"
-        echo "remaining=$(cat $GITHUB_OUTPUT)" >> $GITHUB_ENV
+        echo "$(cat $GITHUB_OUTPUT)" >> $GITHUB_ENV
       shell: bash
