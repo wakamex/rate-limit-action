@@ -11,11 +11,11 @@ runs:
   steps:
     - name: Get PR for commit
       id: get-pr
-      uses: actions/github-script@v5
+      uses: actions/github-script@v6
       with:
         script: |
           const { owner, repo } = context.repo
-          const sha = github.context.sha
+          const sha = github.sha
           console.log(`Repo: ${owner}/${repo}`)
           console.log(`SHA: ${sha}`)
           const { data: pullRequests } = await github.rest.pulls.list({
