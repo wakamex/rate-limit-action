@@ -25,7 +25,7 @@ jobs:
         run: |
           chmod +x ratelimit.sh
           ./ratelimit.sh "${{ secrets.token }}"
-          shell: bash
+        shell: bash
 
       - name: Print remaining rate limit
         run: |
