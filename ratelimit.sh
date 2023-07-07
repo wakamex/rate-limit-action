@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
 if [ -n "$INPUT_TOKEN" ]; then
   RATE_LIMIT=$(curl -s -H "Authorization: token $INPUT_TOKEN" https://api.github.com/rate_limit)
