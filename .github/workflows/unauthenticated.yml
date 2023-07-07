@@ -14,6 +14,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set start_remaining
+        run: echo "start_remaining=${{ env.remaining }}" >> $GITHUB_ENV
+
       - name: Use GitHub unauthenticated API
         run: |
           for i in {1..10}
@@ -32,7 +35,7 @@ jobs:
         id: difference
         run: |
           START_REMAINING=${{ env.start_remaining }}
-          END_REMAINING=${{ env.end_remaining }}
+          END_REMAINING=${{ env.remaining }}
 
           echo "Remaining rate limit at start: $START_REMAINING"
           echo "Remaining rate limit at end: $END_REMAINING"
