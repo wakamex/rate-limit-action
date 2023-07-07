@@ -28,6 +28,5 @@ runs:
 
     - name: Print remaining rate limit
       run: |
-        echo "Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }}"
-        echo "### Hello world! :rocket:\n Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }}" >> $GITHUB_STEP_SUMMARY
+        echo "Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }} :rocket:" >> $GITHUB_STEP_SUMMARY
       shell: bash
