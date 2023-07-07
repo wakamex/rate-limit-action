@@ -5,8 +5,7 @@ jobs:
   _:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Wrapper
-        uses: wakamex/rate-limit-action@main
+      - uses: wakamex/rate-limit-action@master
         with:
           action: wrapper
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
