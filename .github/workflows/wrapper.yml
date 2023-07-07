@@ -12,16 +12,13 @@ jobs:
   calc:
     runs-on: ubuntu-latest
     steps:
-      uses: wakamex/rate-limit-action@main
-      with:
-        action: calc
-    secrets:
-      token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+      - uses: wakamex/rate-limit-action/.github/workflows/calc.yml@master
+        with:
+          token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
   show:
     runs-on: ubuntu-latest
     needs: calc
     steps:
-      uses: wakamex/rate-limit-action@main
-      with:
-        action: show
-        remaining: ${{ needs.calc.outputs.remaining }}
+      - uses: wakamex/rate-limit-action/.github/workflows/show.yml@master
+        with:
+          remaining: ${{ needs.calc.outputs.remaining }}
