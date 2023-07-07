@@ -5,12 +5,12 @@ on:
   push:
 
 jobs:
-  call_check_rate_limit:
+  limit:
     uses: wakamex/rate-limit-action/.github/workflows/reusable.yml@master
     secrets:
       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
-  call_show_rate_limit:
-    needs: call_check_rate_limit
+  show:
+    needs: limit
     uses: wakamex/rate-limit-action/.github/workflows/show-rate-limit.yml@master
     with:
-      remaining: ${{ needs.call_check_rate_limit.outputs.remaining }}
+      remaining: ${{ needs.limit.outputs.remaining }}
