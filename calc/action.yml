@@ -1,12 +1,11 @@
-
-secrets:
+inputs:
   token:
     description: 'GitHub token'
     required: false
 outputs:
   remaining:
     description: 'The remaining rate limit after running the action'
-    value: ${{ jobs.calc_rate_limit.outputs.remaining }}
+    value: ${{ steps.calc_rate_limit.outputs.remaining }}
 runs:
   using: 'composite'
   steps:
@@ -22,11 +21,10 @@ runs:
       id: calc_rate_limit
       run: |
         chmod +x ratelimit.sh
-        ./ratelimit.sh "${{ secrets.token }}"
+        ./ratelimit.sh "${{ inputs.token }}"
       shell: bash
 
     - name: Print remaining rate limit
       run: |
         echo "Remaining rate limit: ${{ steps.calc_rate_limit.outputs.remaining }}"
-  outputs:
-    remaining: ${{ steps.calc_rate_limit.outputs.remaining }}
+      shell: bash
