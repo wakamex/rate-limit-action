@@ -14,9 +14,6 @@ jobs:
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
 
-      - name: Set start_remaining
-        run: echo "start_remaining=${{ steps.start.outputs.remaining }}" >> $GITHUB_ENV
-
       - name: Use GitHub thenticated API
         run: |
           for i in {1..10}
@@ -34,8 +31,8 @@ jobs:
       - name: Calculate difference
         id: difference
         run: |
-          START_REMAINING=${{ env.start_remaining }}
-          END_REMAINING=${{ env.emaining }}
+          START_REMAINING=${{ steps.start.outputs.remaining }}
+          END_REMAINING=${{ steps.end.outputs.remaining }}
 
           echo "Remaining rate limit at start: $START_REMAINING"
           echo "Remaining rate limit at end: $END_REMAINING"
