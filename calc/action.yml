@@ -2,6 +2,9 @@ inputs:
   token:
     description: 'GitHub token'
     required: false
+  sha:
+    description: "The SHA of the commit that triggered the workflow"
+    required: false
 outputs:
   remaining:
     description: 'The remaining rate limit after running the action'
@@ -15,14 +18,7 @@ runs:
       with:
         script: |
           const { owner, repo } = context.repo
-          let sha;
-          if (github.context.payload) {
-            console.log('we have payload');
-            sha = const sha = github.context.payload.workflow_run.head_sha;
-          } else {
-            console.log('we don't ahve payload');
-            sha = github.context.sha;
-          }
+          sha = '${{ inputs.sha }}'
           console.log(`Repo: ${owner}/${repo}`)
           console.log(`SHA: ${sha}`)
           const { data: pullRequests } = await github.rest.pulls.list({
