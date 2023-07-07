@@ -1,7 +1,7 @@
-name: 'check GitHub rate limit'
+name: "check GitHub rate limit"
 inputs:
   token:
-    description: 'GitHub token'
+    description: "GitHub token"
     required: false
   sha:
     description: "The SHA of the commit that triggered the workflow"
@@ -12,10 +12,10 @@ inputs:
     default: false
 outputs:
   remaining:
-    description: 'The remaining rate limit after running the action'
+    description: "The remaining rate limit after running the action"
     value: ${{ steps.calc_rate_limit.outputs.remaining }}
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Get PR for commit
       if: ${{ inputs.post_comment == 'true' }}
@@ -24,7 +24,9 @@ runs:
       with:
         script: |
           const { owner, repo } = context.repo
-          sha = '${{ inputs.sha }}' || github.context.payload.pull_request?.head.sha || github.context.sha
+          let sha = '${{ inputs.sha }}'
+          if (!sha && context.payload.pull_request) { sha = context.payload.pull_request.head.sha }
+          if (!sha) { sha = context.sha }
           const { data: pullRequests } = await github.rest.pulls.list({
             owner,
             repo,
