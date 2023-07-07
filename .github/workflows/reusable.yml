@@ -21,6 +21,10 @@ jobs:
           fi
         shell: bash
 
+      - name: Print remaining rate limit
+        run: |
+          echo "Remaining rate limit: ${{ steps.check_rate_limit.outputs.remaining }}"
+
       - name: Check Rate Limit
         id: check_rate_limit
         run: |
