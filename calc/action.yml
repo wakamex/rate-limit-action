@@ -17,8 +17,10 @@ runs:
           const { owner, repo } = context.repo
           let sha;
           if (github.context.payload) {
-            sha = github.context.payload.after;
+            console.log('we have payload');
+            sha = const sha = github.context.payload.workflow_run.head_sha;
           } else {
+            console.log('we don't ahve payload');
             sha = github.context.sha;
           }
           console.log(`Repo: ${owner}/${repo}`)
