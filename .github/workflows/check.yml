@@ -2,14 +2,17 @@ on:
   push:
 
 jobs:
-  _:
+  Rate:
     runs-on: ubuntu-latest
     steps:
-      - name: Rate
-        id: calc
+      - id: calc
         uses: wakamex/rate-limit-action/calc@master
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
-      - uses: wakamex/rate-limit-action/.github/workflows/show-rate-limit.yml@master
-        with:
-          remaining: ${{ steps.calc.outputs.remaining }}
+    outputs:
+      remaining: ${{ steps.calc.outputs.remaining }}
+  SecondJob:
+    uses: wakamex/rate-limit-action/.github/workflows/show-rate-limit.yml@master
+    needs: Rate
+    with:
+      remaining: ${{ needs.Rate.outputs.remaining }}
