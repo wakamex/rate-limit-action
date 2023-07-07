@@ -10,6 +10,10 @@ on:
       remaining:
         description: 'The remaining rate limit after running the action'
         value: ${{ jobs.check_rate_limit.outputs.remaining }}
+    secrets:
+      GH_GITHUB_COM_TOKEN:
+        required: false
+
 run-name: "Rate limit check: ${{ jobs.check_rate_limit.outputs.remaining }}"
 jobs:
   check_rate_limit:
