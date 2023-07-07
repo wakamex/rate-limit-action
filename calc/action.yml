@@ -15,7 +15,7 @@ runs:
       with:
         script: |
           const { owner, repo } = context.repo
-          const sha = github.sha
+          const sha = github.context.sha
           console.log(`Repo: ${owner}/${repo}`)
           console.log(`SHA: ${sha}`)
           const { data: pullRequests } = await github.rest.pulls.list({
