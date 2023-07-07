@@ -6,6 +6,6 @@ on:
 
 jobs:
   call_reusable_workflow:
-    uses: your-repo/.github/workflows/your-reusable-workflow.yml@branch
+    uses: wakamex/rate-limit-action/.github/workflows/reusable.yaml@master
     with:
       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
