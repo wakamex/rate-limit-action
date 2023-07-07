@@ -4,6 +4,7 @@ inputs:
   token:
     description: 'GitHub token'
     required: false
+    type: string
 outputs:
   remaining:
     description: 'The remaining rate limit after running the action'
