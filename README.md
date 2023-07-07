@@ -46,6 +46,10 @@ If you want to use the `post_comment` feature, you must also add the following p
 
 ![What creating a permissive token looks like](./readme_images/permissions.png)
 
+If `post_comment` is set to `true`, the action will post a comment to the PR with the results as well:
+
+![Remaining rate limit posted in a PR comment](./readme_images/pr_comment.png)
+
 ## Output
 
 This output is printed in the action log:
