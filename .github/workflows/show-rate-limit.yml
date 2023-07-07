@@ -1,7 +1,7 @@
 run-name: "Limit: ${{ jobs.show.outputs.remaining }}"
 on:
   workflow_run:
-    workflows: ["Rate"]
+    workflows: ["Check Rate Limit"]
     types:
       - completed
 jobs:
