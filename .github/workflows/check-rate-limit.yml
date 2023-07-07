@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: calc
-        uses: wakamex/rate-limit-action/calc@master
+        uses: wakamex/rate-limit-action@master
         with:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
           sha: ${{ github.event.workflow_run.head_sha }}
