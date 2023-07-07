@@ -24,4 +24,6 @@ echo "Remaining: $REMAINING"
 echo "Used: $USED"
 echo "The rate limit will reset at $RESET_TIME UTC"
 echo "Time remaining until reset: $TIME_REMAINING_SECONDS seconds ($TIME_REMAINING_MINUTES minutes)"
+echo "remaining=$REMAINING"
 echo "remaining=$REMAINING" >> $GITHUB_OUTPUT
+echo "remaining=$GITHUB_OUTPUT"
