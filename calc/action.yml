@@ -9,6 +9,20 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Get PR for commit
+      id: get-pr
+      uses: actions/github-script@v5
+      with:
+        script: |
+          const { owner, repo } = context.repo
+          const { sha } = context.sha
+          const { data: pullRequests } = await github.pulls.list({
+            owner,
+            repo,
+            state: 'open',
+          })
+          const pullRequest = pullRequests.find(pr => pr.head.sha === sha)
+          return pullRequest ? pullRequest.number : null
     - name: Checkout
       uses: actions/checkout@v3
     - name: Install jq
