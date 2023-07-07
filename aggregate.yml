@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  limit:
+    uses: wakamex/rate-limit-action@main
+    with:
+      action: limit
+    secrets:
+      token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+  show:
+    needs: limit
+    uses: wakamex/rate-limit-action@main
+    with:
+      action: show
+      remaining: ${{ needs.limit.outputs.remaining }}

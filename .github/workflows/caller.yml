@@ -1,17 +1,14 @@
 on:
-  workflow_dispatch:
   push:
+    branches:
+      - main
 
 jobs:
-  calc:
-    uses: wakamex/rate-limit-action@main
-    with:
-      action: calc
-    secrets:
-      token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
-  show:
-    needs: calc
-    uses: wakamex/rate-limit-action@main
-    with:
-      action: show
-      remaining: ${{ needs.calc.outputs.remaining }}
+  _:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Caller Action
+        uses: wakamex/rate-limit-action@main
+        with:
+          action: aggregate
+          token: ${{ secrets.GH_GITHUB_COM_TOKEN }}

@@ -12,6 +12,7 @@ jobs:
         id: start
         uses: wakamex/rate-limit-action@master
         with:
+          action: caller
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
 
       - name: Use GitHub authenticated API
