@@ -55,3 +55,6 @@ jobs:
       - name: Print difference
         run: |
           echo "Difference in remaining calls: ${{ env.difference }}"
+
+    # Set the run name to include the ending rate limit
+    run-name: "Rate limit at end: ${{ steps.end.outputs.remaining
