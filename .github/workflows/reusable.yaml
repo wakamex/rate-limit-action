@@ -5,6 +5,7 @@ on:
       token:
         description: 'GitHub token'
         required: false
+run-name: "Rate limit check: ${{ jobs.check_rate_limit.outputs.remaining }}"
 jobs:
   check_rate_limit:
     runs-on: ubuntu-latest
