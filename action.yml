@@ -24,7 +24,7 @@ runs:
       with:
         script: |
           const { owner, repo } = context.repo
-          sha = '${{ inputs.sha }}'
+          sha = '${{ inputs.sha }}' || github.context.payload.pull_request?.head.sha || github.context.sha
           const { data: pullRequests } = await github.rest.pulls.list({
             owner,
             repo,
