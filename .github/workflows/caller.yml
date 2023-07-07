@@ -1,15 +1,5 @@
 name: Call reusable workflow
 
-# on:
-#   workflow_dispatch:
-#   push:
-
-# jobs:
-#   call_reusable_workflow:
-#     uses: wakamex/rate-limit-action/.github/workflows/reusable.yaml@master
-#     secrets:
-#       token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
-
 on:
   workflow_dispatch:
   push:
