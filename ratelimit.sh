@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/bash
 
 if [ -n "$INPUT_TOKEN" ]; then
   RATE_LIMIT=$(curl -s -H "Authorization: token $INPUT_TOKEN" https://api.github.com/rate_limit)
@@ -23,3 +23,4 @@ echo "Remaining: $REMAINING"
 echo "Used: $USED"
 echo "The rate limit will reset at $RESET_TIME UTC"
 echo "Time remaining until reset: $TIME_REMAINING_SECONDS seconds ($TIME_REMAINING_MINUTES minutes)"
+echo $REMAINING
