@@ -11,8 +11,3 @@ jobs:
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
     outputs:
       remaining: ${{ steps.calc.outputs.remaining }}
-  SecondJob:
-    uses: wakamex/rate-limit-action/.github/workflows/show-rate-limit.yml@master
-    needs: Rate
-    with:
-      remaining: ${{ needs.Rate.outputs.remaining }}
