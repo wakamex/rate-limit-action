@@ -1,12 +1,13 @@
 #!/bin/bash
 
-if [ -n "$INPUT_TOKEN" ]; then
-  RATE_LIMIT=$(curl -s -H "Authorization: token $INPUT_TOKEN" https://api.github.com/rate_limit)
+TOKEN=$1
+
+if [ -n "$TOKEN" ]; then
+  RATE_LIMIT=$(curl -s -H "Authorization: token $TOKEN" https://api.github.com/rate_limit)
 else
   RATE_LIMIT=$(curl -s https://api.github.com/rate_limit)
 fi
 
-RATE_LIMIT=$(curl -s https://api.github.com/rate_limit)
 LIMIT=$(echo $RATE_LIMIT | jq .rate.limit)
 REMAINING=$(echo $RATE_LIMIT | jq .rate.remaining)
 RESET=$(echo $RATE_LIMIT | jq .rate.reset)
