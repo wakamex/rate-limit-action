@@ -4,6 +4,9 @@ inputs:
   token:
     description: 'GitHub token'
     required: false
+outputs:
+  remaining:
+    description: 'The remaining rate limit after running the action'
 runs:
   using: 'composite'
   steps:

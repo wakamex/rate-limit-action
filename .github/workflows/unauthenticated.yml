@@ -8,7 +8,7 @@ jobs:
   check-rate-limit:
     runs-on: ubuntu-latest
     steps:
-      - name: Check unauthenticated GitHub rate limit at start with custom token
+      - name: Check unauthenticated GitHub rate limit at start with default token
         id: start
         uses: wakamex/rate-limit-action@master
         with:
@@ -22,7 +22,7 @@ jobs:
           done
         shell: bash
 
-      - name: Check unauthenticated GitHub rate limit at end with custom token
+      - name: Check unauthenticated GitHub rate limit at end with default token
         uses: wakamex/rate-limit-action@master
         id: end
         with:
