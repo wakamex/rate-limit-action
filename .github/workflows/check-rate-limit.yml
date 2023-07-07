@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  Rate:
+  check-rate-limit:
     runs-on: ubuntu-latest
     steps:
       - id: calc
