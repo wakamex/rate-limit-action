@@ -1,0 +1,23 @@
+on:
+  workflow_call:
+    secrets:
+      token:
+        description: 'GitHub token'
+        required: false
+    outputs:
+      remaining:
+        description: 'The remaining rate limit after running the action'
+        value: ${{ jobs.calc.outputs.remaining }}
+jobs:
+  calc:
+    uses: wakamex/rate-limit-action@main
+    with:
+      action: calc
+    secrets:
+      token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
+  show:
+    needs: calc
+    uses: wakamex/rate-limit-action@main
+    with:
+      action: show
+      remaining: ${{ needs.calc.outputs.remaining }}

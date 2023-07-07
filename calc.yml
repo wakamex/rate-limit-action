@@ -7,7 +7,7 @@ on:
     outputs:
       remaining:
         description: 'The remaining rate limit after running the action'
-        value: ${{ jobs.check_rate_limit.outputs.remaining }}  # Set the output here
+        value: ${{ jobs.check_rate_limit.outputs.remaining }}
 jobs:
   check_rate_limit:
     runs-on: ubuntu-latest

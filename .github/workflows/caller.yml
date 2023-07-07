@@ -1,14 +1,12 @@
 on:
   push:
-    branches:
-      - main
 
 jobs:
   _:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Caller Action
+      - name: Trigger Wrapper
         uses: wakamex/rate-limit-action@main
         with:
-          action: aggregate
+          action: wrapper
           token: ${{ secrets.GH_GITHUB_COM_TOKEN }}
