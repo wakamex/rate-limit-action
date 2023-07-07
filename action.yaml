@@ -7,6 +7,7 @@ inputs:
 outputs:
   remaining:
     description: 'The remaining rate limit after running the action'
+    value: ${{ steps.check_rate_limit.outputs.remaining }}  # Set the output here
 runs:
   using: 'composite'
   steps:
@@ -22,8 +23,9 @@ runs:
       shell: bash
 
     - name: Check Rate Limit
+      id: check_rate_limit  # Add an id to this step
       run: |
         chmod +x ratelimit.sh
         ./ratelimit.sh "${{ inputs.token }}"
-        echo "output check in action.yaml: $(cat $GITHUB_OUTPUT)"
+        echo "remaining=$(cat $GITHUB_OUTPUT)" >> $GITHUB_ENV  # Set the output as an environment variable
       shell: bash
