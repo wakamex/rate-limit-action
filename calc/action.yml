@@ -16,12 +16,16 @@ runs:
         script: |
           const { owner, repo } = context.repo
           const { sha } = context.sha
+          console.log(`Repo: ${owner}/${repo}`)
+          console.log(`SHA: ${sha}`)
           const { data: pullRequests } = await github.rest.pulls.list({
             owner,
             repo,
             state: 'open',
           })
+          console.log(`Pull requests: ${JSON.stringify(pullRequests, null, 2)}`)
           const pullRequest = pullRequests.find(pr => pr.head.sha === sha)
+          console.log(`Matched PR: ${JSON.stringify(pullRequest, null, 2)}`)
           return pullRequest ? pullRequest.number : null
     - name: Print PR number
       run: |
