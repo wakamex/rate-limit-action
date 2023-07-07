@@ -5,6 +5,6 @@ inputs:
     type: string
 runs:
   steps:
-    - name: "Limit: ${{ inputs.remaining }}"
+    - name: "Print remaining rate limit"
       run: echo "Remaining rate limit: ${{ inputs.remaining }}"
       shell: bash
