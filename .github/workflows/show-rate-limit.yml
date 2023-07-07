@@ -1,9 +1,6 @@
 run-name: "Limit: ${{ jobs.show.outputs.remaining }}"
 on:
-  workflow_run:
-    workflows: ["Check Rate Limit"]
-    types:
-      - completed
+  workflow_call:
 jobs:
   show:
     runs-on: ubuntu-latest
