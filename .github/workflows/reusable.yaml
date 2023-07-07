@@ -1,11 +1,10 @@
 name: 'check GitHub rate limit'
 on:
   workflow_call:
-    inputs:
+    secrets:
       token:
         description: 'GitHub token'
         required: false
-        type: string
 jobs:
   check_rate_limit:
     runs-on: ubuntu-latest
@@ -25,7 +24,7 @@ jobs:
         id: check_rate_limit
         run: |
           chmod +x ratelimit.sh
-          ./ratelimit.sh "${{ inputs.token }}"
+          ./ratelimit.sh "${{ secrets.token }}"
         shell: bash
     outputs:
       remaining: ${{ steps.check_rate_limit.outputs.remaining }}
