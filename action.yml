@@ -45,7 +45,7 @@ runs:
       run: |
         if ! command -v jq &> /dev/null
         then
-          sudo apt install -y jq
+          apt install -y jq
         fi
       shell: bash
 
