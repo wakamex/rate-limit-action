@@ -52,8 +52,8 @@ runs:
     - name: Calculate rate Limit
       id: calc_rate_limit
       run: |
-        chmod +x "${{ github.action_path }}/ratelimit.sh"
-        "${{ github.action_path }}/ratelimit.sh" "${{ inputs.token }}"
+        chmod +x "${{ github.workspace }}/ratelimit.sh"
+        "${{ github.workspace }}/ratelimit.sh" "${{ inputs.token }}"
       shell: bash
 
     - name: Print remaining rate limit
