@@ -39,6 +39,7 @@ runs:
       if: ${{ inputs.post_comment == 'true' }}
       run: |
         echo "PR number: ${{ steps.get-pr.outputs.result }}"
+      shell: bash
 
     - name: Install dependencies
       run: |
@@ -48,6 +49,7 @@ runs:
         else
             apt install -y jq curl
         fi
+      shell: bash
 
     - name: Calculate rate Limit
       id: calc_rate_limit
