@@ -43,11 +43,11 @@ runs:
 
     - name: Install dependencies
       run: |
-        if command -v sudo &> /dev/null
-        then
-            sudo apt-get update && sudo apt-get install -y jq curl
-        else
-            apt-get update && apt-get install -y jq curl
+        if command -v sudo &> /dev/null; then PM="sudo apt-get"; else PM="apt-get"; fi
+        if ! command -v jq &> /dev/null || ! command -v curl &> /dev/null; then
+            $PM update
+            if ! command -v jq &> /dev/null; then $PM install -y jq; fi
+            if ! command -v curl &> /dev/null; then $PM install -y curl; fi
         fi
       shell: bash
 
