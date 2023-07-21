@@ -34,19 +34,19 @@ runs:
           })
           const pullRequest = pullRequests.find(pr => pr.head.sha === sha)
           return pullRequest ? pullRequest.number : null
+
     - name: Print PR number
       if: ${{ inputs.post_comment == 'true' }}
       run: |
         echo "PR number: ${{ steps.get-pr.outputs.result }}"
       shell: bash
+
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Install jq
+
+    - name: Install jq and curl
       run: |
-        if ! command -v jq &> /dev/null
-        then
-          apt install -y jq
-        fi
+        apt install -y jq curl
       shell: bash
 
     - name: Calculate rate Limit
@@ -77,7 +77,6 @@ runs:
         echo "remaining=$REMAINING"
         echo "remaining=$REMAINING" >> $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT
-
       shell: bash
 
     - name: Print remaining rate limit
