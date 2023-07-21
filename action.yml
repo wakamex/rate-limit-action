@@ -45,10 +45,8 @@ runs:
       run: |
         if command -v sudo &> /dev/null
         then
-            sudo apt install -y jq curl
             sudo apt-get update && sudo apt-get install -y jq curl
         else
-            apt install -y jq curl
             apt-get update && apt-get install -y jq curl
         fi
       shell: bash
